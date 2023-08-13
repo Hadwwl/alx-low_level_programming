@@ -8,22 +8,20 @@
 
 int main(void)
 {
-	int o = '0';
-	int t = '0';
+	int o;
+	int t;
 
-	for (o = 0 ; o <= 9 ; o++)
+	for (t = 0 ; t <= 9 ; t++)
 	{
-		for (t = 0 ; t <= 9 ; t++)
+		for (o = t + 1 ; o <= 9 ; o++)
 		{
-			if ((!(o == t) && (t > o)))
+			putchar(t + '0');
+			putchar(o + '0');
+
+			if (t < 8 || o < 9)
 			{
-				putchar(o + '0');
-				putchar(t + '0');
-				if (!(o == 9 && t == 8))
-				{
-					putchar(',');
-					putchar(' ');
-				}
+				putchar(',');
+				putchar(' ');
 			}
 		}
 	}
