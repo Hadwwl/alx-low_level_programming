@@ -14,7 +14,7 @@ int main(int argc, char *argv[])
 
 	if (argc != 2)
 	{
-		printf("ERROR\n");
+		printf("Error\n");
 		exit(1);
 	}
 
@@ -22,7 +22,7 @@ int main(int argc, char *argv[])
 
 	if (bytes < 0)
 	{
-		printf("ERROR\n");
+		printf("Error\n");
 		exit(2);
 	}
 
@@ -35,7 +35,7 @@ int main(int argc, char *argv[])
 			printf("%02hhx\n", arr[i]);
 			break;
 		}
-		printf("%02hhx ", arr[i]);
+		printf("%02hhx", arr[i]);
 	}
 	return (0);
 }
