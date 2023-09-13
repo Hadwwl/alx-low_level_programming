@@ -9,8 +9,8 @@
  */
 int main(int argc, char *argv[])
 {
-	unsigned int bytes, i;
-	char *arr;
+	int bytes, i;
+	unsigned char *arr;
 
 	if (argc != 2)
 	{
