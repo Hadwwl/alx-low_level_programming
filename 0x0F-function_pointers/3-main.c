@@ -4,7 +4,7 @@
 #include "function_pointers.h"
 
 /**
- * main - check the code 
+ * main - check the code
  * @argc: the number of args
  * @argv: argument vector
  * Return: 0 always
@@ -17,7 +17,7 @@ int main(int __attribute__((__unused__)) argc, char *argv[])
 	if (argc != 4)
 	{
 		printf("ERROR\n");
-       		exit(98);
+		exit(98);
 	}
 
 	num1 = atoi(argv[1]);
