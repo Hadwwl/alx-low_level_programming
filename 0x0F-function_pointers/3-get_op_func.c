@@ -1,6 +1,6 @@
 #include "3-calc.h"
-#include <stddef.h>
 #include <stdlib.h>
+
 /**
  * get_op_func - return pointer to right op function
  * @s: string operator
@@ -20,7 +20,7 @@ int (*get_op_func(char *s))(int, int)
 	int i = 0;
 
 	while (ops[i].op != NULL && *(ops[i].op) != *s)
-	    i++;
+		i++;
 
 	return (ops[i].f);
 }
