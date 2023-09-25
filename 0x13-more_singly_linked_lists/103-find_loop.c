@@ -18,7 +18,7 @@ listint_t *find_listint_loop(listint_t *head)
 
 		if (love == laugh)
 		{
-			love = laugh;
+			love = head;
 			while (love != laugh)
 			{
 				love = love->next;
