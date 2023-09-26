@@ -12,10 +12,8 @@ size_t free_listint_safe(listint_t **h)
 	size_t countlove = 0;
 	int diff;
 
-	if (h == NULL || *h == NULL)
-	{
+	if (!h || !*h)
 		return (0);
-	}
 
 	while (*h)
 	{

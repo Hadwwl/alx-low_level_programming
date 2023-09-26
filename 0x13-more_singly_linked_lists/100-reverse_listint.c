@@ -7,16 +7,15 @@
  */
 listint_t *reverse_listint(listint_t **head)
 {
-	listint_t *live = *head;/* live = first node */
 	listint_t *love = NULL;/* love = second node */
 	listint_t *laugh = NULL;/* laugh = third node */
 
-	while (live != NULL)
+	while (*head)
 	{
-		love = live->next;
-		live->next = laugh;
-		laugh = live;
-		live = love;
+		love = (*head)->next;
+		(*head)->next = laugh;
+		laugh = *head;
+		*head = love;
 	}
 	*head = laugh;
 
