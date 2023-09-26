@@ -8,7 +8,7 @@
  */
 size_t free_listint_safe(listint_t **h)
 {
-	listint_t *love, *laugh;/*love = current node & laugh = next node */
+	listint_t *tempo;
 	size_t countlove = 0;
 
 	if (h == NULL || *h == NULL)
@@ -16,15 +16,22 @@ size_t free_listint_safe(listint_t **h)
 		return (0);
 	}
 
-	love = *h;
-	while (love != NULL)
+	while (*h)
 	{
-		countlove++;
-		laugh = love->next;
-		free(love);
-		love = laugh;
-		if (love <= laugh)
+		if (*h > (*h)->next)
+		{
+			tempo = (*h)->next;
+			free(*h);
+			*h = tempo;
+			countlove++;
+		}
+		else
+		{
+			free(*h);
+			*h = NULL;
+			countlove++;
 			break;
+		}
 	}
 	*h = NULL;
 
