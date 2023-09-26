@@ -10,6 +10,7 @@ size_t free_listint_safe(listint_t **h)
 {
 	listint_t *tempo;
 	size_t countlove = 0;
+	int diff;
 
 	if (h == NULL || *h == NULL)
 	{
@@ -18,7 +19,9 @@ size_t free_listint_safe(listint_t **h)
 
 	while (*h)
 	{
-		if (*h > (*h)->next)
+		diff = *h - (*h)->next;
+
+		if (diff > 0)
 		{
 			tempo = (*h)->next;
 			free(*h);
