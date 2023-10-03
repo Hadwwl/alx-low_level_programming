@@ -3,7 +3,7 @@
 /**
  * append_text_to_file - appends text at the end of a file
  * @filename: points to name of the file
- * @text_content: points to NULL terminated string to add at the end of the file
+ * @text_content: points to terminated string to add at the end of the file
  * Return: 1 on success & -1 on failure or no file or content
  */
 int append_text_to_file(const char *filename, char *text_content)
