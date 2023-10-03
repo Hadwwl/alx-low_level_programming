@@ -73,5 +73,29 @@ int main(int argc, char *argv[])
 	do{
 		if (fromlove == -1 || readlove == -1)
 		{
-			dprinf(STDERR_FILENO,
-				"
+			dprintf(STDERR_FILENO,
+				"Error: Can't read from file %s\n", argv[1]);
+			free(lovebuffer);
+			exit(99);
+		}
+
+		writelove = write(tolove, lovebuffer, readlove);
+
+		if (tolove == -1 || writelove == -1)
+		{
+			dprintf(STDERR_FILENO,
+				"Error: Can't write to %s\n", argv[2]);
+			free(lovebuffer);
+			exit(99);
+		}
+
+		readlove = read(fromlove, lovebuffer, 1024);
+		tolove = open(argv[2], O_WRONLY | O_APPEND);
+	} while (readlove > 0);
+
+	free(lovebuffer);
+	close_file(fromlove);
+	close_file(tolove);
+
+	return (0);
+}
