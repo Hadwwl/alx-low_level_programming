@@ -6,7 +6,7 @@ char *create_buffer(char *file);
 void close_file(int fd);
 
 /**
- * create_file - creates 1024 bytes for buffer
+ * create_buffer - creates 1024 bytes for buffer
  * @file: name of file tgat stores buffer chars
  * Return: pointer points to new buffer
  */
@@ -48,7 +48,7 @@ void close_file(int fd)
  * main - function to copy file content to other file
  * @argv: arrays of pointers to arguments
  * @argc: number of arguments
- * @Return: 0 success
+ * Return: 0 success
  * 97 if arguments incorrect
  * 99 if filefrom not exist or cann't read
  * 100 if cannot close fd
@@ -70,7 +70,7 @@ int main(int argc, char *argv[])
 	readlove = read(fromlove, lovebuffer, 1024);
 	tolove = open(argv[2], O_CREAT | O_WRONLY | O_TRUNC, 0664);
 
-	do{
+	do {
 		if (fromlove == -1 || readlove == -1)
 		{
 			dprintf(STDERR_FILENO,
