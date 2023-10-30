@@ -25,9 +25,7 @@ int create_file(const char *filename, char *text_content)
 	writelov = write(file_desc, text_content, length);
 
 	if (file_desc == -1 || writelov == -1)
-	{
 		return (-1);
-	}
 
 	close(file_desc);
 
