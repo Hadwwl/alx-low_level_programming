@@ -16,16 +16,15 @@ int create_file(const char *filename, char *text_content)
 	{
 		return (-1);
 	}
-
+	if (text_content != NULL)
+	{
+		for (length = 0 ; text_content[length];)
+			length++;
+	}
 	file_desc = open(filename, O_CREAT | O_WRONLY | O_TRUNC, 0600);
+	writelov = write(file_desc, text_content, length);
 
-	if (file_desc == -1)
-		return (-1);
-	if (!text_content)
-		text_content = " ";
-	for (length = 0 ; text_content[length] ; length++)
-		writelov = write(file_desc, text_content, length);
-	if (writelov == -1)
+	if (file_desc == -1 || writelov == -1)
 		return (-1);
 
 	close(file_desc);
