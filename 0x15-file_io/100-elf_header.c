@@ -6,25 +6,50 @@
 #include <sys/types.h>
 #include <elf.h>
 
+void check_elf_file(unsigned char *e_ident);
+void print_magic(unsigned char *e_ident);
+void close_elf(int elf_des);
+
 /**
  * check_elf_file - checks if the file is ELF file
- * @magic_num: points to array contains ELF magic numbers
+ * @e_ident: points to array contains ELF magic numbers
  * Description: exit 98 if file isn't ELF
  */
-void check_elf_file(unsigned char *magic_num)
+void check_elf_file(unsigned char *e_ident)
 {
 	int i;
 
 	for (i = 0 ; i < 4 ; i++)
 	{
-		if (magic_num[i] != 127 &&
-		magic_num[i] != 'E' &&
-		magic_num[i] != 'L' &&
-		magic_num[i] != 'F')
+		if (e_ident[i] != 127 &&
+		e_ident[i] != 'E' &&
+		e_ident[i] != 'L' &&
+		e_ident[i] != 'F')
 		{
 			dprintf(STDERR_FILENO, "Error: not ELF file\n");
 			exit(98);
 		}
+	}
+}
+/**
+ * print_magic - printsmagic number of ELF header
+ * @e_ident: points to array contains ELF magic numbers
+ * Description: there's space separating magic numbers
+ */
+void print_magic(unsigned char *e_ident)
+{
+	int i;
+
+	printf(" Magic: ");
+
+	for (i = 0 ; i < EI_NIDENT ; i++)
+	{
+		printf("%02x", e_ident[i]);
+
+		if (i == EI_NIDENT - 1)
+			printf("\n");
+		else
+			printf(" ");
 	}
 }
 /**
@@ -74,6 +99,10 @@ int main(int __attribute__((__unused__)) argc, char *argv[])
 		dprintf(STDERR_FILENO, "Error: not ELF file %s\n", argv[1]);
 		exit(98);
 	}
+	check_elf_file(h->e_ident);
+	printf("ELF Header:\n");
+	print_magic(h->e_ident);
+
 	free(h);
 	close_elf(openl);
 	return (0);
