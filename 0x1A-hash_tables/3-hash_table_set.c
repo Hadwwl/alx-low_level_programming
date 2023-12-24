@@ -1,5 +1,36 @@
 #include "hash_tables.h"
 /**
+ * mk_new_n - create new node
+ * @key: key of node
+ * @value: value of noe
+ * Return: 1 for success or 0 otherwise
+ */
+hash_node_t *mk_new_n(const char *key, const char *value)
+{
+	hash_node_t *n;
+
+	n = malloc(sizeof(hash_node_t));
+	if (n == NULL)
+	{
+		return (NULL);
+	}
+	n->key = strdup(key);
+	if (n->key == NULL)
+	{
+		free(n);
+		return (NULL);
+	}
+	n->value = strdup(value);
+	if (n->value == NULL)
+	{
+		free(n->key);
+		free(n);
+		return (NULL);
+	}
+	n->next = NULL;
+	return (n);
+}
+/**
  * hash_table_set - adds an element to the hash table.
  * @ht: hash table you want to add or update key/value to
  * @key: ket, can not be an empty string
@@ -36,30 +67,4 @@ int hash_table_set(hash_table_t *ht, const char *key, const char *value)
 	hshnode->next = ht->array[indx];
 	ht->array[indx] = hshnode;
 	return (1);
-}
-
-/**
- * mk_new_n - create new node
- * @key: key of node
- * @value: value of noe
- * Return: 1 if it succeeded or 0 otherwise
- */
-hash_node_t *mk_new_n(const char *key, const char *value)
-{
-	hash_node_t *n;
-
-	n = malloc(sizeof(hash_node_t));
-	if (n == NULL)
-	{
-		return (NULL);
-	}
-	n->key = strdup(key);
-	if (n->value == NULL)
-	{
-		free(n->key);
-		free(n);
-		return (NULL);
-	}
-	n->next = NULL;
-	return (n);
 }
